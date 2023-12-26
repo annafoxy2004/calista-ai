@@ -36,12 +36,6 @@ export const Sidebar = () => {
       label: "Create",
       pro: true,
     },
-    {
-      icon: Settings,
-      href: '/settings',
-      label: "Settings",
-      pro: false,
-    },
   ];
 
   return (

@@ -27,6 +27,7 @@ export const Categories = ({
     }, { skipNull: true });
 
     router.push(url);
+    router.refresh()
   };
 
   return (

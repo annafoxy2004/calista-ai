@@ -63,7 +63,6 @@ export const CompanionForm = ({
   categories,
   initialData
 }: CompanionFormProps) => {
-
   const { toast } = useToast();
   const router = useRouter();
 
@@ -84,10 +83,8 @@ export const CompanionForm = ({
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       if (initialData) {
-        //Update companion funtionality
         await axios.patch(`/api/companion/${initialData.id}`, values);
       } else {
-        //Create companion functionality
         await axios.post("/api/companion", values);
       }
 
@@ -96,12 +93,12 @@ export const CompanionForm = ({
         duration: 3000,
       });
 
-      router.refresh(); //для мгновенного отображения компанентов
+      router.refresh();
       router.push("/");
     } catch (error) {
       toast({
         variant: "destructive",
-        description: "Something went wrong",
+        description: "Something went wrong.",
         duration: 3000,
       });
     }

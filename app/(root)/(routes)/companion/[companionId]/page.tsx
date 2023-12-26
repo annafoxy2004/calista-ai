@@ -21,24 +21,24 @@ const CompanionIdPage = async ({
     return redirectToSignIn();
   }
 
-//   const validSubscription = await checkSubscription();
+  // const validSubscription = await checkSubscription();
 
-//   if (!validSubscription) {
-//     return redirect("/");
-//   }
+  // if (!validSubscription) {
+  //   return redirect("/");
+  // }
 
-const companion = await prismadb.companion.findUnique({
-  where: {
-    id: params.companionId,
-    userId,
-  }
-});
+  const companion = await prismadb.companion.findUnique({
+    where: {
+      id: params.companionId,
+      userId,
+    }
+  });
 
-const categories = await prismadb.category.findMany();
+  const categories = await prismadb.category.findMany();
 
-return ( 
-  <CompanionForm initialData={companion} categories={categories} />
-);
+  return ( 
+    <CompanionForm initialData={companion} categories={categories} />
+  );
 }
-
+ 
 export default CompanionIdPage;
