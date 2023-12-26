@@ -1,7 +1,7 @@
 import { Redis } from "@upstash/redis";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { PineconeClient } from "../node_modules/@pinecone-database/pinecone/dist/v0/index";
-import { PineconeStore } from "langchain/vectorstores/pinecone";
+import { PineconeStore } from "../node_modules/langchain/vectorstores/pinecone";
 
 export type CompanionKey = {
   companionName: string;
