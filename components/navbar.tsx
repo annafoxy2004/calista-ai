@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
-import { Sparkles, MessageCircleHeart } from "lucide-react";
+import { Sparkles, MessageCircle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { MobileSidebar } from "@/components/mobile-sidebar";
@@ -33,7 +33,7 @@ export const Navbar = () => {
        
           <Button  size="sm" variant="premium">
             <a href="https://messenger-i.vercel.app/">Messenger</a>
-           <MessageCircleHeart className="h-4 w-4  text-white ml-2"/>
+           <MessageCircle className="h-4 w-4  text-white ml-2"/>
            
           </Button>
        
