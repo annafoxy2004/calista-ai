@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { UserButton } from "@clerk/nextjs";
 import { Poppins } from "next/font/google";
-import { Sparkles } from "lucide-react";
+import { Sparkles, MessageCircleHeart } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { MobileSidebar } from "@/components/mobile-sidebar";
@@ -30,12 +30,13 @@ export const Navbar = () => {
         </Link>
       </div>
       <div className="flex items-center gap-x-3">
-        {/* {!isPro && (
-          <Button onClick={proModal.onOpen} size="sm" variant="premium">
-            Upgrade
-            <Sparkles className="h-4 w-4 fill-white text-white ml-2" />
+       
+          <Button  size="sm" variant="premium">
+            <a href="https://messenger-i.vercel.app/">Messenger</a>
+           <MessageCircleHeart className="h-4 w-4  text-white ml-2"/>
+           
           </Button>
-        )} */}
+       
         <ModeToggle />
         <UserButton afterSignOutUrl="/" />
       </div>

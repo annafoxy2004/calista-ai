@@ -1,7 +1,8 @@
 import { Redis } from "@upstash/redis";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeClient } from "../node_modules/@pinecone-database/pinecone/dist/v0/index";
-import { PineconeStore } from "../node_modules/langchain/vectorstores/pinecone";
+import { PineconeClient } from "@pinecone-database/pinecone";
+import { PineconeStore } from "langchain/vectorstores/pinecone";
+import { string } from "zod";
 
 export type CompanionKey = {
   companionName: string;
@@ -41,7 +42,7 @@ export class MemoryManager {
     const vectorStore = await PineconeStore.fromExistingIndex(
       new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
       { pineconeIndex }
-    ); 
+    );
 
     const similarDocs = await vectorStore
       .similaritySearch(recentChatHistory, 3, { fileName: companionFileName })
@@ -51,16 +52,15 @@ export class MemoryManager {
     return similarDocs;
   }
 
+  private generateRedisCompanionKey(companionKey: CompanionKey): string {
+    return `${companionKey.companionName}-${companionKey.modelName}-${companionKey.userId}`;
+  }
   public static async getInstance(): Promise<MemoryManager> {
     if (!MemoryManager.instance) {
       MemoryManager.instance = new MemoryManager();
       await MemoryManager.instance.init();
     }
     return MemoryManager.instance;
-  }
-
-  private generateRedisCompanionKey(companionKey: CompanionKey): string {
-    return `${companionKey.companionName}-${companionKey.modelName}-${companionKey.userId}`;
   }
 
   public async writeToHistory(text: string, companionKey: CompanionKey) {
@@ -113,4 +113,3 @@ export class MemoryManager {
     }
   }
 }
-

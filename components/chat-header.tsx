@@ -16,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
 
-interface ChatHeaderProps {
+export interface ChatHeaderProps {
   companion: Companion & {
     messages: Message[];
     _count: {

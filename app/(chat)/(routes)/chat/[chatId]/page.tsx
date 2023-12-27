@@ -5,7 +5,7 @@ import prismadb from "@/lib/prismadb";
 
 import { ChatClient } from "./components/client";
 
-interface ChatIdPageProps {
+export interface ChatIdPageProps {
   params: {
     chatId: string;
   }
