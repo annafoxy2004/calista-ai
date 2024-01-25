@@ -1,6 +1,6 @@
 import { Redis } from "@upstash/redis";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
-import { PineconeClient } from "@pinecone-database/pinecone";
+import { Pinecone, PineconeClient } from "@pinecone-database/pinecone";
 import { PineconeStore } from "langchain/vectorstores/pinecone";
 import { string } from "zod";
 
@@ -33,11 +33,14 @@ export class MemoryManager {
     recentChatHistory: string,
     companionFileName: string
   ) {
-    const pineconeClient = <PineconeClient>this.vectorDBClient;
+    
+    const pinecone = new Pinecone();
+    // const pinecone = <PineconeClient>this.vectorDBClient;
 
-    const pineconeIndex = pineconeClient.Index(
-      process.env.PINECONE_INDEX! || ""
-    );
+    const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX! || "");
+    // const pineconeIndex = pinecone.Index(
+    //   process.env.PINECONE_INDEX! || ""
+    // );
 
     const vectorStore = await PineconeStore.fromExistingIndex(
       new OpenAIEmbeddings({ openAIApiKey: process.env.OPENAI_API_KEY }),
